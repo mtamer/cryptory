@@ -8,14 +8,14 @@ import (
 // Ceasar's Encryption Cipher
 // Developed by Julius Ceasar
 func CeasarEnc(msg string) (string, error) {
-	lower := strings.ToUpper(msg)
+	upper := strings.ToUpper(msg)
 	var encrypted []rune
-	for _, value := range lower {
+	for _, value := range upper {
 		value += 3
-		if value >= 90 {
+		if value > 90 {
 			value -= 26
 		}
-		if value <= 65 || value >= 90 {
+		if value < 65 || value > 90 {
 			return "", errors.New("Not an alphabetic string.")
 		}
 		encrypted = append(encrypted, value)
@@ -25,14 +25,14 @@ func CeasarEnc(msg string) (string, error) {
 
 // Ceasar's Decryption Cipher
 func CeasarDec(encrypted string) (string, error) {
-	lower := strings.ToUpper(encrypted)
+	upper := strings.ToUpper(encrypted)
 	var msg []rune
-	for _, value := range lower {
+	for _, value := range upper {
 		value -= 3
-		if value >= 90 {
+		if value < 65 {
 			value += 26
 		}
-		if value <= 65 || value >= 90 {
+		if value < 65 || value > 90 {
 			return "", errors.New("Not an alphabetic string.")
 		}
 		msg = append(msg, value)
@@ -42,10 +42,10 @@ func CeasarDec(encrypted string) (string, error) {
 
 // Mono Alphabetic Encryption Cipher
 func MonoAlphaEnc(msg string) (string, error) {
-	lower := strings.ToUpper(msg)
+	upper := strings.ToUpper(msg)
 	var encrypted []rune
-	for _, value := range lower {
-		if value <= 65 || value >= 90 {
+	for _, value := range upper {
+		if value < 65 || value > 90 {
 			return "", errors.New("Not an alphabetic string.")
 		}
 		encrypted = append(encrypted, monoMap[value])
@@ -55,10 +55,10 @@ func MonoAlphaEnc(msg string) (string, error) {
 
 // Mono Alphabetic Decryption Cipher
 func MonoAlphaDec(encrypted string) (string, error) {
-	lower := strings.ToUpper(encrypted)
+	upper := strings.ToUpper(encrypted)
 	var msg []rune
-	for _, value := range lower {
-		if value <= 65 || value >= 90 {
+	for _, value := range upper {
+		if value < 65 || value > 90 {
 			return "", errors.New("Not an alphabetic string.")
 		}
 		msg = append(msg, monoMapRev[value])

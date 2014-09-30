@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/collinglass/cryptory/cryptory"
+	"github.com/mtamer/cryptory/cryptory"
 )
 
 func main() {
